@@ -1,0 +1,36 @@
+<div class="flex items-center w-full mt-4 mb-10">
+  <div
+    class="join flex justify-center items-center"
+    [class.w-[90%]]="optionsLmit()"
+    [class.w-full]="!optionsLmit()"
+  >
+    @for (page of getPagesList(); track page) {
+      <button
+        class="join-item btn"
+        [class.btn-accent]="page === activePage()"
+        [routerLink]="[]"
+        [queryParams]="{ page: page }"
+        (click)="activePage.set(page)"
+      >
+        {{ page }}
+      </button>
+    } @empty {
+      <p>No hay paginas</p>
+    }
+  </div>
+  @if (optionsLmit()) {
+    <div class="join flex justify-end items-center float-end">
+      <select
+        class="select float-end rounded-lg"
+        [value]="itemsPerPage()"
+        (change)="updateItemsPerPage(itemsPP.value)"
+        #itemsPP
+      >
+        <option disabled selected>items per page</option>
+        <option>8</option>
+        <option>12</option>
+        <option>16</option>
+      </select>
+    </div>
+  }
+</div>

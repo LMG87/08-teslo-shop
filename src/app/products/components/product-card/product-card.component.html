@@ -1,0 +1,26 @@
+<div class="card bg-gray-800 shadow-xl animate-fadeIn">
+  <figure>
+    <img
+      [ngSrc]="product().images | productImage"
+      [alt]="product().title"
+      width="375"
+      height="375"
+      priority
+    />
+  </figure>
+  <div class="card-body">
+    <h2
+      class="card-title font-montserrat text-accent text-xl hover:text-primary"
+    >
+      <a class="cursor-pointer" [routerLink]="['/product', product().slug]">
+        {{ product().title | slice: 0 : 24 }}
+      </a>
+    </h2>
+    <p>{{ product().description | slice: 0 : 70 }}</p>
+    <div class="card-actions justify-end">
+      <a class="link link-accent" [routerLink]="['/product', product().slug]">
+        More Details...
+      </a>
+    </div>
+  </div>
+</div>
