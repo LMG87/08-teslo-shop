@@ -1,0 +1,43 @@
+<h1 class="text-2xl font-bold">Product List</h1>
+<h3 class="text-lg">
+  total products
+  <span class="text-accent">{{ productsResource.value()?.count }}</span>
+</h3>
+<div class="divider divider-secondary"></div>
+<div class="flex gap-2 items-center h-20">
+  <app-pagination
+    [pages]="productsResource.value()?.pages ?? 0"
+    [currentPage]="paginationService.currentPage()"
+    [optionsLmit]="false"
+  ></app-pagination>
+
+  <select
+    class="select select-bordered w-32 mb-10 mt-4"
+    (change)="setLimit(itemsPP.value)"
+    #itemsPP
+  >
+    <option>10</option>
+    <option>20</option>
+    <option>50</option>
+    <option>100</option>
+  </select>
+
+  <div class="flex flex-1"></div>
+
+  <button class="btn btn-secondary" routerLink="/admin/product/new">
+    <i class="bi bi-plus-circle"></i> New Product
+  </button>
+</div>
+@if (productsResource.isLoading()) {
+  <div class="flex justify-center items-center h-screen">
+    <span class="loading loading-spinner loading-lg"></span>
+  </div>
+}
+@if (productsResource.hasValue()) {
+  <product-table [products]="productsResource.value().products"></product-table>
+}
+<app-pagination
+  [pages]="productsResource.value()?.pages ?? 0"
+  [currentPage]="paginationService.currentPage()"
+  [optionsLmit]="false"
+></app-pagination>

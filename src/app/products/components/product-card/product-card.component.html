@@ -1,11 +1,10 @@
 <div class="card bg-gray-800 shadow-xl animate-fadeIn">
   <figure>
     <img
-      [ngSrc]="product().images | productImage"
+      [src]="product().images | productImage"
       [alt]="product().title"
       width="375"
       height="375"
-      priority
     />
   </figure>
   <div class="card-body">

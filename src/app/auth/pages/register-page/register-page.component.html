@@ -1,1 +1,51 @@
-<p>register-page works!</p>
+<form
+  action=""
+  class="flex flex-col gap-2"
+  [formGroup]="registerForm"
+  (ngSubmit)="onSubmit()"
+>
+  <label class="input">
+    <i class="bi bi-envelope opacity-50"></i>
+    <input
+      type="email"
+      class="grow"
+      placeholder="Email"
+      formControlName="email"
+    />
+  </label>
+  <label class="input">
+    <i class="bi bi-key opacity-50"></i>
+    <input
+      type="text"
+      class="grow"
+      placeholder="password"
+      formControlName="password"
+    />
+  </label>
+  <label class="input">
+    <i class="bi bi-person opacity-50"></i>
+    <input
+      type="text"
+      class="grow"
+      placeholder="fullName"
+      formControlName="fullName"
+    />
+  </label>
+
+  <button type="submit" class="btn btn-secondary">register</button>
+
+  <div class="flex gap-2 justify-center items-center">
+    <span class="text-slate-700">Already have an account?</span>
+    <a routerLink="/auth/login" class="text-blue-500">Login</a>
+  </div>
+</form>
+
+@if (hasError()) {
+  <div
+    role="alert"
+    class="alert alert-error animate-fadeIn fixed bottom-5 right-5 w-80"
+  >
+    <i class="bi bi-x-circle"></i>
+    <span>Error! verify the information provided.</span>
+  </div>
+}
